@@ -8,10 +8,10 @@ class KitchenApi extends ResourceController
 {
     use ResponseTrait;
 
+    // Fetch pending food orders
     public function pendingOrders()
     {
         $db = \Config\Database::connect();
-
         $sql = "
             SELECT 
                 s.sale_id,
@@ -27,11 +27,11 @@ class KitchenApi extends ResourceController
             GROUP BY s.sale_id
             ORDER BY s.sale_time ASC
         ";
-
         $orders = $db->query($sql)->getResultArray();
         return $this->respond($orders);
     }
 
+    // Mark an order complete
     public function complete($id)
     {
         $db = \Config\Database::connect();
