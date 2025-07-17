@@ -1,0 +1,2 @@
+$routes->get('api/kitchen_orders', 'KitchenApi::pendingOrders');
+$routes->post('api/kitchen_complete/(:num)', 'KitchenApi::complete/$1');
