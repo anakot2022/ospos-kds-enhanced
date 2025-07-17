@@ -14,7 +14,8 @@ ospos-kds-enhanced/
 │   ├── public/
 │   │   ├── index.html
 │   │   ├── manifest.json
-│   │   └── ding.mp3
+│   │   ├── ding.mp3
+│   │   └── icon-192.png
 │   ├── src/
 │   │   ├── App.jsx
 │   │   ├── config.js
