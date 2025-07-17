@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { API_URL, WS_URL, STATION_FILTER } from "./config";
 import OrderCard from "./components/OrderCard";
+import { connectWebSocket } from "./websocket";
 
 export default function App() {
   const [orders, setOrders] = useState([]);
@@ -23,14 +24,21 @@ export default function App() {
   useEffect(() => {
     fetchOrders();
 
-    const ws = new WebSocket(WS_URL);
-    ws.onmessage = () => {
-      fetchOrders();
-      audio.play();
-    };
+    // WebSocket live updates
+    const ws = connectWebSocket(WS_URL, (msg) => {
+      const parsed = JSON.parse(msg);
+      if (parsed.type === "new_order") {
+        fetchOrders();
+        audio.play();
+      }
+    });
 
-    const interval = setInterval(fetchOrders, 10000); // fallback polling
-    return () => clearInterval(interval);
+    // Fallback polling
+    const interval = setInterval(fetchOrders, 10000);
+    return () => {
+      clearInterval(interval);
+      ws.close();
+    };
   }, []);
 
   return (
