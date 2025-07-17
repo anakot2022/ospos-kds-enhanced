@@ -18,3 +18,35 @@ This connects **OpenSourcePOS 3.4.0** with a **Kitchen Display System**.
 
 ```bash
 php backend/ws-server.php
+
+
+2. Frontend Setup
+bash
+Copy
+Edit
+cd kds-panel
+npm install
+npm run build
+Deploy dist/ folder to any webserver.
+
+3. Configuration
+Edit src/config.js:
+
+javascript
+Copy
+Edit
+export const API_URL = "http://your-ospos-domain/api";
+export const WS_URL = "ws://your-server-ip:8080/kitchen";
+export const STATION_FILTER = null;
+4. Run
+Open dist/index.html → Kitchen panel loads
+
+Add to Home Screen (PWA) on tablets
+
+Multi Station Support
+If you have multiple kitchen stations, set STATION_FILTER in config.js:
+
+javascript
+Copy
+Edit
+export const STATION_FILTER = "Grill";
