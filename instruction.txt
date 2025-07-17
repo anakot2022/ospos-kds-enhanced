@@ -1,0 +1,20 @@
+# OSPOS Kitchen Display System (Enhanced)
+
+This connects **OpenSourcePOS 3.4.0** with a **Kitchen Display System**.
+
+✅ Real-time updates (WebSocket)  
+✅ Sound alerts  
+✅ Dark mode  
+✅ Multi-station filtering  
+✅ PWA (installable on tablets)
+
+---
+
+## 1. Backend Setup
+
+1. Copy `backend/KitchenApi.php` to `app/Controllers/`  
+2. Add routes from `backend/routes-snippet.txt` to `app/Config/Routes.php`  
+3. (Optional) Run WebSocket server:
+
+```bash
+php backend/ws-server.php
